@@ -60,4 +60,18 @@ sui client ptb \
 
 3. The command allows calling functions defined in the package and transferring objects.
    If you run `sui client objects` you will see your published package now.
-4. You can chain multiple commands in a single transaction block.
+![image](https://github.com/Eshan-Sharma/movebook/assets/43044334/8c6efc86-28e4-42d1-8f03-d824c98aef1f)
+Use the ```objectId``` of the object with ```objectType 0xa666..4a14::todo_list::Todolist``` and set ```export LIST_ID="objectId here"```
+
+4. You can chain multiple commands in a single transaction block. This shows the power of Transaction Blocks! Using the same list object, we will add three more items and remove one. The command will look like this:
+```
+sui client ptb \
+--gas-budget 100000000 \
+--move-call $PACKAGE_ID::todo_list::add @$LIST_ID "'Finish Concepts chapter'" \
+--move-call $PACKAGE_ID::todo_list::add @$LIST_ID "'Read the Move Basics chapter'" \
+--move-call $PACKAGE_ID::todo_list::add @$LIST_ID "'Learn about Object Model'" \
+--move-call $PACKAGE_ID::todo_list::remove @$LIST_ID 0
+```
+
+## Documentation
+https://move-book.com/your-first-move/hello-sui.html#prepare-the-variables
